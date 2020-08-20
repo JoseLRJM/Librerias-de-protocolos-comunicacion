@@ -11,11 +11,13 @@ using namespace arduino_due::pwm_lib;
 #define dir_der 37
 #define pull_izq 6
 #define dir_izq 39
-#define pull_aux 7
-#define dir_aux 35
+#define pull_aux 7 // pulso stacker
+#define dir_aux 35 // direccion stacker
+
 #define INICIO_CARRERA  51
 #define FIN_CARRERA   53
 
+// maquina de estados
 #define GO_HOME     1
 #define READY_TO_GO 2
 #define GO_FIN      3
@@ -130,7 +132,7 @@ static void stacker(){
     
     case GO_HOME:
       if(!homes){
-        motor_aux.setSpeed(600);
+        motor_aux.setSpeed(300);
         motor_aux.runSpeed();
       }else{
         motor_aux.stop();
